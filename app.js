@@ -9,50 +9,20 @@ app.use(express.json());
 app.use(cors());
 
 // routes
-const productRoute = require('./routes/v1/job.route')
-
-//schema design
-//jobcategory schema
-// const jobCategorySchema = mongoose.Schema({
-//   name: {
-//     type: String,
-//     required: [true, "Please provide a category name"],
-//     trim: true,
-//     unique: [true, "Category name must be unique "],
-//     minLength: [4, "Name must be at least 4 characters."],
-//     maxLength: [30, "Name not to be larger than 30  characters."],
-//   },
-//   description: {
-//     type: String,
-//     required: [true, "Please category description"],
-//   }
-// })
+const jobsRoute = require('./routes/v1/job.route')
+const categoriesRoute = require('./routes/v1/jobCategories.route')
+const employersRoute = require('./routes/v1/employer.route')
+const jobSeekerRoute = require('./routes/v1/jobSeeker.route')
+const applicationRoute = require('./routes/v1/application.route')
+const savedJobRoute = require('./routes/v1/savedJob.route')
 
 
-// // mongoose middlewares for saving data: pre / post
-// jobSchema.pre('save', function (next) {
-//   // this=>
-//   console.log("Before Saving Data");
-//   if (this.noOfPost === 0) {
-//     this.status = 'close'
-//   }
-//   next()
-// })
-
-// jobSchema.post('save', function (doc, next) {
-//   console.log("After Saving Data");
-//   next()
-// })
-
-// jobSchema.methods.logger = function () {
-//   console.log(`Data saved for ${this.title}`);
-// }
-
-
-// to save data into database
-
-// to get/post data from the database
-app.use('/api/v1/jobs', productRoute)
+app.use('/api/v1/jobs', jobsRoute)
+app.use('/api/v1/categories', categoriesRoute)
+app.use('/api/v1/employers', employersRoute)
+app.use('/api/v1/jobSeekers', jobSeekerRoute)
+app.use('/api/v1/applications', applicationRoute)
+app.use('/api/v1/savedjob', savedJobRoute)
 
 app.get("/", (req, res) => {
   res.send("Careersbangladesh server is running ~~~~~~~ YaY!");

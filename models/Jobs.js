@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const { default: mongoose } = require("mongoose");
 
 //job schema
@@ -6,6 +7,7 @@ const jobSchema = mongoose.Schema({
         type: String,
         required: [true, "Please provide a job title"],
         trim: true,
+        lowercase: true,
         minLength: [4, "Name must be at least 4 characters."],
         maxLength: [50, "Name not to be larger than 30  characters."],
     },
@@ -15,6 +17,13 @@ const jobSchema = mongoose.Schema({
         required: [true, "Please category job description"],
         minLength: [4, "Name must be at least 4 characters."],
         maxLength: [400, "Name not to be larger than 400  characters."],
+    },
+
+    jobLocation: {
+        type: String,
+        required: [true, "Please provide the job location"],
+        minLength: [4, "Name must be at least 4 characters."],
+        maxLength: [100, "Name not to be larger than 100  characters."],
     },
 
     salary: {
@@ -58,20 +67,40 @@ const jobSchema = mongoose.Schema({
         }
     },
 
-    // employer: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "Employer"
-    // },
+    jobSeeker: {
+        name: {
+            type: String,
+            required: true,
+        },
+        id: {
+            type: ObjectId,
+            ref: "jobSeeker",
+            required: true,
+        }
+    },
+    employer: {
+        name: {
+            type: String,
+            required: true,
+        },
+        id: {
+            type: ObjectId,
+            ref: "Employer",
+            required: true,
+        }
+    },
 
-    // jobCategories: [{
-    //   name: {
-    //     type: String,
-    //     required: true,
-    //   },
-    //   _id: mongoose.Schema.Types.ObjectId,
-    // }]
-
-
+    jobCategories: {
+        name: {
+            type: String,
+            required: true,
+        },
+        _id: {
+            type: ObjectId,
+            ref: "Category",
+            required: true,
+        }
+    }
 
 }, {
     timestamps: true
