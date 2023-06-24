@@ -1,4 +1,9 @@
-const Job = require("../models/Jobs")
+
+
+
+const Job = require("../models/Jobs");
+const Employer = require("../models/Employer");
+
 
 exports.getJobsService = async (filters, queries) => {
     const jobs = await Job.find({})
@@ -13,8 +18,15 @@ exports.getJobsService = async (filters, queries) => {
 }
 
 exports.createJobsService = async (data) => {
-    const jobs = await Job.create(data)
-    return jobs
+    const job = await Job.create(data);
+    const { _id: jobId, employer } = job;
+
+    const res = await Employer.updateOne(
+        { _id: employer.id },
+        { $push: { jobs: jobId } }
+    )
+    console.log(res);
+    return job
 }
 
 exports.updateAJobsService = async (jobId, data) => {

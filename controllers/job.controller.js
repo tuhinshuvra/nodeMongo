@@ -70,8 +70,8 @@ exports.getJobs = async (req, res, next) => {
 
 exports.createJob = async (req, res, next) => {
     try {
-        const result = await createJobsService(req.body)
-        result.logger()
+        const result = await createJobsService(req.body);
+        // result.logger()
 
         res.status(200).json({
             status: "Success",
@@ -129,7 +129,7 @@ exports.deleteAJobById = async (req, res, next) => {
         if (!result.deletedCount) {
             return res.status(400).json({
                 status: "fail",
-                error: "Couldn't delete the product"
+                error: "Couldn't delete the job"
             })
         }
 
@@ -154,7 +154,7 @@ exports.bulkDeleteJob = async (req, res, next) => {
         if (!result.deletedCount) {
             return res.status(400).json({
                 status: "fail",
-                error: "Couldn't delete the product"
+                error: "Couldn't delete the job"
             })
         }
 
@@ -168,5 +168,12 @@ exports.bulkDeleteJob = async (req, res, next) => {
             message: "Could not delete the given jobs",
             error: error.message
         })
+    }
+}
+exports.fileUpload = async (req, res) => {
+    try {
+        res.status(200).json(req.file)
+    } catch (error) {
+
     }
 }

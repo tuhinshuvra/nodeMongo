@@ -67,17 +67,17 @@ const jobSchema = mongoose.Schema({
         }
     },
 
-    jobSeeker: {
-        name: {
-            type: String,
-            required: true,
-        },
-        id: {
-            type: ObjectId,
-            ref: "jobSeeker",
-            required: true,
-        }
-    },
+    // jobSeeker: {
+    //     name: {
+    //         type: String,
+    //         required: true,
+    //     },
+    //     id: {
+    //         type: ObjectId,
+    //         ref: "jobSeeker",
+    //         required: true,
+    //     }
+    // },
     employer: {
         name: {
             type: String,
@@ -90,46 +90,24 @@ const jobSchema = mongoose.Schema({
         }
     },
 
-    jobCategories: {
-        name: {
-            type: String,
-            required: true,
-        },
-        _id: {
-            type: ObjectId,
-            ref: "Category",
-            required: true,
-        }
-    }
+    // jobCategories: {
+    //     name: {
+    //         type: String,
+    //         required: true,
+    //     },
+    //     _id: {
+    //         type: ObjectId,
+    //         ref: "Category",
+    //         required: true,
+    //     }
+    // }
 
 }, {
     timestamps: true
 },)
 
 
-// mongoose middlewares for saving data: pre / post
-jobSchema.pre('save', function (next) {
-    // this=>
-    console.log("Before Saving Data");
-    if (this.noOfPost === 0) {
-        this.status = 'close'
-    }
-    next()
-})
-
-jobSchema.post('save', function (doc, next) {
-    console.log("After Saving Data");
-    next()
-})
-
-jobSchema.methods.logger = function () {
-    console.log(`Data saved for ${this.title}`);
-}
-
-
-
 //Schema => Model => Query
-// product Model
 const Job = mongoose.model('job', jobSchema)
 
 module.exports = Job;

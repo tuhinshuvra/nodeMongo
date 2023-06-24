@@ -1,9 +1,15 @@
 const express = require("express");
 const employerController = require("../../controllers/employer.controller");
-// const employerController = require("../controllers/employer.controller")
 
 const router = express.Router();
 
-router.post("/", employerController.createEmployer);
+
+router.route("/")
+    .post(employerController.createEmployer)
+    .get(employerController.getEmployer);
+
+router.route("/:id")
+    .get(employerController.getEmployerById)
+    .patch(employerController.updateEmployer);
 
 module.exports = router;

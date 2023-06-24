@@ -1,6 +1,10 @@
 const express = require('express')
-const router = express.Router()
+const router = express.Router();
 const jobController = require('../../controllers/job.controller')
+const multer = require("multer");
+const uploader = multer({ dest: "images/" })
+
+router.post("/file-upload", jobController.fileUpload);
 
 router.route('/bulk-update').patch(jobController.bulkUpdateJob)
 router.route('/bulk-delete').delete(jobController.bulkDeleteJob)

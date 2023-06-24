@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose')
 const validator = require('validator');
 
@@ -8,7 +9,7 @@ const EmployerSchema = mongoose.Schema({
     email: {
         type: String,
     },
-    comanyName: {
+    companyName: {
         type: String,
         trim: true,
         required: [true, "Please provide company name"],
