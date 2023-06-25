@@ -1,8 +1,5 @@
 const { createJobSeekerService, getJobSeekerService, updateJobSeekerService } = require("../services/jobSeeker.services")
 
-
-
-
 exports.createJobSeeker = async (req, res, next) => {
     try {
         const result = await createJobSeekerService(req.body);

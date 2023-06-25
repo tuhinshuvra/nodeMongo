@@ -45,10 +45,17 @@ const EmployerSchema = mongoose.Schema({
         required: [true, "Please provide a company description"],
         maxLength: 1000,
     },
-    jobs: [{
-        type: ObjectId,
-        ref: "Jobs"
-    },]
+    jobs: {
+        title: {
+            type: String,
+            required: true,
+        },
+        id: {
+            type: ObjectId,
+            ref: "Employer",
+            required: true,
+        }
+    },
 }, {
     timestamps: true
 });

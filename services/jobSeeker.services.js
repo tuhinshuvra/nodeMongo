@@ -1,8 +1,3 @@
-
-
-
-
-
 const JobSeeker = require("../models/JobSeeker");
 
 exports.createJobSeekerService = async (data) => {

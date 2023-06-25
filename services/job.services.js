@@ -1,6 +1,3 @@
-
-
-
 const Job = require("../models/Jobs");
 const Employer = require("../models/Employer");
 

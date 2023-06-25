@@ -1,18 +1,29 @@
+const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose')
-const validator = require('validator');
 
 const ApplicationSchema = mongoose.Schema({
-    name: {
-        type: String,
+    jobs: {
+        title: {
+            type: String,
+            required: true,
+        },
+        id: {
+            type: ObjectId,
+            ref: "Job",
+            required: true,
+        }
     },
-    email: {
-        type: String,
+    jobSeeker: {
+        email: {
+            type: String,
+            required: true,
+        },
+        id: {
+            type: ObjectId,
+            ref: "JobSeeker",
+            required: true,
+        }
     },
-
-    jobs: [{
-        type: ObjectId,
-        ref: "Jobs"
-    },]
 }, {
     timestamps: true
 });
