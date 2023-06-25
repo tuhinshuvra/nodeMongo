@@ -50,18 +50,40 @@ const JobSeekerSchema = mongoose.Schema({
         required: [true, "Please provide a permanent address"],
         maxLength: 300,
     },
-    jobs: [{
-        type: ObjectId,
-        ref: "Jobs"
-    }],
-    employer: [{
-        type: ObjectId,
-        ref: "Employer"
-    }],
-    user: [{
-        type: ObjectId,
-        ref: 'User'
-    }],
+    employer: {
+        name: {
+            type: String,
+            required: true,
+        },
+        id: {
+            type: ObjectId,
+            ref: "Employer",
+            required: true,
+        }
+    },
+    jobs: {
+        title: {
+            type: String,
+            required: true,
+        },
+        id: {
+            type: ObjectId,
+            ref: "Employer",
+            required: true,
+        }
+    },
+    // jobs: [{
+    //     type: ObjectId,
+    //     ref: "Jobs"
+    // }],
+    // employer: [{
+    //     type: ObjectId,
+    //     ref: "Employer"
+    // }],
+    // user: [{
+    //     type: ObjectId,
+    //     ref: 'User'
+    // }],
 }, {
     timestamps: true
 });

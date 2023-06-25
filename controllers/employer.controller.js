@@ -1,4 +1,7 @@
-const { createEmployerService, getEmployerService, getEmployerByIdService, updateEmployerService } = require("../services/employer.services");
+const { createEmployerService,
+    getEmployerService,
+    getEmployerByIdService,
+    updateEmployerService } = require("../services/employer.services");
 
 exports.createEmployer = async (req, res, next) => {
     try {
@@ -22,12 +25,11 @@ exports.getEmployer = async (req, res, next) => {
             status: "success",
             data: employer,
         })
-
     } catch (error) {
         console.log(error);
         res.status(400).json({
             status: "fail",
-            error: "Couldn't get the employers"
+            error: "Couldn't get employers"
         })
     }
 }
