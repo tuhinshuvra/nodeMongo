@@ -9,7 +9,7 @@ const ApplicationSchema = mongoose.Schema({
         },
         id: {
             type: ObjectId,
-            ref: "Job",
+            ref: "Jobs",
             required: true,
         }
     },
